@@ -7,28 +7,20 @@ import { Textarea } from "./Textarea";
 import "./index.css";
 import "./App.css";
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
   "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const CalendarApp = () => {
@@ -128,7 +120,7 @@ const CalendarApp = () => {
     }
 
     return (
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-2 text-center">
         {days.map((day) => (
           <span key={day} className="text-sm font-bold">
             {day}
@@ -178,11 +170,11 @@ const CalendarApp = () => {
     <div className="max-w-4xl mx-auto p-5">
       <Card>
         <CardHeader>
-          <div className="flex items-center">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
-              className="h-14 mr-2"
+              className="h-14 mb-4 sm:mb-0 sm:mr-2"
             >
               <defs>
                 <style>
@@ -221,11 +213,13 @@ const CalendarApp = () => {
                 />
               </g>
             </svg>
-            <CardTitle>Calendar App</CardTitle>
+            <CardTitle className="text-center sm:text-left">
+              Calendar App
+            </CardTitle>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:justify-between mb-4">
             <Button
               variant="secondary"
               onClick={() =>
@@ -237,6 +231,7 @@ const CalendarApp = () => {
                   )
                 )
               }
+              className="mb-2 sm:mb-0"
             >
               Prev
             </Button>
@@ -254,6 +249,7 @@ const CalendarApp = () => {
                   )
                 )
               }
+              className="mb-2 sm:mb-0"
             >
               Next
             </Button>
@@ -274,6 +270,7 @@ const CalendarApp = () => {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, title: e.target.value })
               }
+              className="w-full p-3 text-base"
             />
           </div>
           <div className="mb-4">
@@ -282,7 +279,7 @@ const CalendarApp = () => {
               id="date"
               type="date"
               value={newEvent.date}
-              style={{ fontSize: "16px", padding: "8px 12px" }}
+              className="w-full p-3 text-base"
               onChange={(e) =>
                 setNewEvent({ ...newEvent, date: e.target.value })
               }
@@ -297,7 +294,7 @@ const CalendarApp = () => {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, time: e.target.value })
               }
-              style={{ fontSize: "16px", padding: "19px 12px" }}
+              className="w-full p-3 text-base"
             />
           </div>
           <div className="mb-4">
@@ -308,6 +305,7 @@ const CalendarApp = () => {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, description: e.target.value })
               }
+              className="w-full p-3 text-base"
             />
           </div>
           <Button onClick={handleAddEvent}>Add Event</Button>
@@ -327,6 +325,7 @@ const CalendarApp = () => {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, title: e.target.value })
                 }
+                className="w-full p-3 text-base"
               />
             </div>
             <div className="mb-4">
@@ -338,6 +337,7 @@ const CalendarApp = () => {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, date: e.target.value })
                 }
+                className="w-full p-3 text-base"
               />
             </div>
             <div className="mb-4">
@@ -349,6 +349,7 @@ const CalendarApp = () => {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, time: e.target.value })
                 }
+                className="w-full p-3 text-base"
               />
             </div>
             <div className="mb-4">
@@ -359,6 +360,7 @@ const CalendarApp = () => {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, description: e.target.value })
                 }
+                className="w-full p-3 text-base"
               />
             </div>
             <Button onClick={handleSaveEvent}>Save Event</Button>
@@ -366,24 +368,21 @@ const CalendarApp = () => {
         </Card>
       )}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Events:</h2>
+        <h2 className="text-xl font-bold mb-4">Events:</h2>
         <ul className="space-y-4">
           {events.map((event) => (
             <li key={event.title} className="bg-gray-100 p-4 rounded shadow-md">
-              <div className="flex justify-between mb-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between mb-2">
                 <span className="text-lg font-bold">{event.title}</span>
                 <span className="text-sm">{event.date}</span>
               </div>
               <p className="text-gray-600">{event.description}</p>
-              <div className="flex space-x-2 mt-2">
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mt-2">
                 <Button onClick={() => handleEditEvent(event)}>Edit</Button>
                 <Button
                   variant="destructive"
                   onClick={() => handleDeleteEvent(event)}
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                  }}
+                  className="text-black"
                 >
                   Delete
                 </Button>
